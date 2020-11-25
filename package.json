@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "westwoods-ac",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Westwoods Community Church - Advent Conspiracy",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Mike Daugherty <mikedaugherty@msdwebsolutions.com",
   "dependencies": {
     "gatsby": "^2.26.1",
     "gatsby-image": "^2.5.0",
@@ -27,7 +27,7 @@
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "dev": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
