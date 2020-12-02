@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
@@ -57,7 +57,7 @@ const CartButton = styled.button`
   outline: none;
 `
 
-const Card = ({ id, title, description, cost }) => {
+const Card = ({ id, title, description, cost, addItem }) => {
   return (
     <StyledCard key={id} variants={card} initial="hidden">
       <div className="title">
@@ -68,8 +68,10 @@ const Card = ({ id, title, description, cost }) => {
       </div>
       <div className="cost">
         <p>${cost}</p>
-        <CartButton>Add to Cart</CartButton>
       </div>
+      <CartButton onClick={addItem} id={id} title={title} cost={cost}>
+        Add to Cart
+      </CartButton>
     </StyledCard>
   )
 }

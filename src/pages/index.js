@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
-import { motion, useCycle } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import SEO from '../components/seo'
 import Layout from '../components/layout'
 import Card from '../components/card'
 import Cart from '../components/cart'
+import { useToggleCart } from '../hooks/toggleCart'
 
 const MainContainer = styled.div`
   width: 100vw;
@@ -24,18 +25,28 @@ const CardContainer = styled(motion.div)`
 const StyledIcon = styled(FontAwesomeIcon)`
   color: #fff;
   width: 35px;
+  margin: 0;
+  padding: 0;
 `
 
 const StyledCartButton = styled.button`
-  width: 50px;
-  height: 50px;
+  height: 40px;
   background: #c03933;
   border: none;
-  border-radius: 50%;
+  border-radius: 10px;
   margin-top: 10px;
   margin-left: 10px;
   outline: none;
   cursor: pointer;
+  color: #fff;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  p {
+    margin: 0 0 0 10px;
+    font-size: 0.8em;
+  }
 `
 
 const staggerCards = {
@@ -50,14 +61,25 @@ const staggerCards = {
 }
 
 const IndexPage = ({ data }) => {
+  const { isToggled, toggle } = useToggleCart(false)
   const opportunities = data.dataJson.giveTo
-  const [isOpen, setisOpen] = useCycle(false, true)
+  const [myCart, setMyCart] = useState([])
+
+  const handleAdd = () => {
+    const newCart = myCart.concat({
+      id: 'id',
+      title: 'title',
+      cost: 'cost',
+    })
+    setMyCart(newCart)
+  }
   return (
     <Layout>
-      <Cart isOpen={isOpen} />
+      <Cart isOpen={isToggled} setIsVisible={toggle} cartList={myCart} />
       <SEO title="Home" />
-      <StyledCartButton onClick={() => setisOpen()}>
+      <StyledCartButton onClick={toggle}>
         <StyledIcon icon={faShoppingCart} />
+        <p>View Cart</p>
       </StyledCartButton>
       <MainContainer>
         <CardContainer
@@ -72,6 +94,7 @@ const IndexPage = ({ data }) => {
               title={opportunity.title}
               description={opportunity.description}
               cost={opportunity.cost}
+              addItem={handleAdd}
             />
           ))}
         </CardContainer>
