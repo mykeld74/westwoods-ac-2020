@@ -127,8 +127,6 @@ const Cart = ({ setIsVisible, cartList, removeAll }) => {
   )
   const items = cartList.length
 
-  const [cart, setCart] = useState(cartList)
-
   return (
     <Sidebar
       animate={isToggled ? 'open' : 'closed'}
