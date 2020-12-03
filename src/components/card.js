@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
@@ -27,14 +27,17 @@ const StyledCard = styled(motion.div)`
   grid-template-columns: 1fr;
   align-content: space-between;
   p,
-  h1 {
+  h3 {
     margin: 0;
   }
   .title {
     color: #c13934;
     background: #cdcdcd;
-    padding: 20px;
+    padding: 0 20px;
     height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
   }
   .desc {
     padding: 5px 20px;
@@ -55,23 +58,32 @@ const CartButton = styled.button`
   color: #fff;
   border: none;
   outline: none;
+  :disabled {
+    background: #bbb;
+  }
 `
 
-const Card = ({ id, title, description, cost, addItem }) => {
+const Card = ({ id, title, cost, category, desc, addItem }) => {
+  const [isClicked, setIsClicked] = useState(false)
   return (
     <StyledCard key={id} variants={card} initial="hidden">
       <div className="title">
-        <h1>{title}</h1>
+        <h3>{title}</h3>
       </div>
-      <div className="desc">
-        <p>{description}</p>
-      </div>
+
       <div className="cost">
         <p>${cost}</p>
+        <CartButton
+          onClick={() => {
+            addItem(id, title, cost, desc)
+            setIsClicked(true)
+          }}
+          disabled={isClicked}
+          className="addButton"
+        >
+          {isClicked ? `Added` : `Add to Cart`}
+        </CartButton>
       </div>
-      <CartButton onClick={addItem} id={id} title={title} cost={cost}>
-        Add to Cart
-      </CartButton>
     </StyledCard>
   )
 }

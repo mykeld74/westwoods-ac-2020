@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Img from 'gatsby-image'

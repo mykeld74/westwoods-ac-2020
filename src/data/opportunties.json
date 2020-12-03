@@ -2,33 +2,87 @@
   "giveTo": [
     {
       "id": "01",
-      "title": "Op Number 1",
-      "description": "Spicy jalapeno bacon ipsum dolor amet exercitation pork belly cupim, pariatur id bacon short ribs duis elit kielbasa hamburger sausage enim. Fugiat jerky in tri-tip consequat. Consectetur ribeye tempor beef consequat. Incididunt venison ex bacon tenderloin ad. Culpa pancetta bresaola boudin in. Sint sunt porchetta duis bresaola, ground round esse.",
-      "cost": 50
+      "title": "One Week of Ministry",
+      "desc": "Ministry - 1 Week",
+      "cost": 120,
+      "category": "ng"
     },
     {
       "id": "02",
-      "title": "Op Number 2",
-      "description": "Turkey t-bone pancetta alcatra capicola in aliqua shankle, ipsum ground round id sunt jerky. Alcatra laborum capicola et. Exercitation chicken meatloaf flank, laborum deserunt magna beef ribs non. Pork belly incididunt filet mignon strip steak. Jerky sed officia cow et cupidatat. Shoulder minim id, short ribs aute velit burgdoggen in ullamco. Incididunt meatloaf laboris in ullamco cupim officia andouille aliquip.",
-      "cost": 75
+      "title": "One Month of Ministry",
+      "desc": "Ministry - 1 Month",
+      "cost": 500,
+      "category": "ng"
     },
     {
       "id": "03",
-      "title": "Op Number 3",
-      "description": "Ham in reprehenderit ipsum laboris nisi kielbasa burgdoggen. Jerky cillum sunt do et voluptate cupim leberkas enim elit doner sausage. Nulla turducken strip steak reprehenderit do spare ribs. Veniam jerky chuck, consequat elit t-bone pork belly in aliquip corned beef lorem ex. Salami qui deserunt strip steak boudin biltong pork belly. Pariatur leberkas fugiat short ribs. Lorem tenderloin filet mignon irure sunt elit alcatra jerky salami ea ground round rump.",
-      "cost": 265
+      "title": "One Quarter of the year of Ministry",
+      "desc": "Ministry - 1 Quarter",
+      "cost": 1500,
+      "category": "ng"
     },
     {
       "id": "04",
-      "title": "Op Number 4",
-      "description": "Nulla turducken elit ut tongue laboris proident kevin flank dolor ullamco. Flank officia proident eu meatball leberkas velit dolore. Veniam id pork, mollit nulla drumstick andouille meatball cow ipsum in proident. Ham ground round filet mignon bacon short loin, voluptate minim cillum burgdoggen tri-tip jowl ex.",
-      "cost": 15
+      "title": "Gas for a day",
+      "desc": "Gas - 1 day",
+      "cost": 50,
+      "category": "jk"
     },
     {
       "id": "05",
-      "title": "Op Number 5",
-      "description": "Short ribs consequat landjaeger, ut magna non sirloin cupidatat pork chop andouille ullamco in. Cow frankfurter burgdoggen anim drumstick non shankle hamburger dolore dolor. Tail do qui chicken cupidatat doner hamburger jowl strip steak nostrud, sirloin brisket salami. Consectetur occaecat laborum, cillum pancetta biltong t-bone excepteur shank prosciutto lorem mollit elit fugiat.",
-      "cost": 1500
+      "title": "Gas for a week",
+      "desc": "Gas - 1 week",
+      "cost": 300,
+      "category": "jk"
+    },
+    {
+      "id": "06",
+      "title": "Gas for a month",
+      "desc": "Gas - 1 month",
+      "cost": 1500,
+      "category": "jk"
+    },
+    {
+      "id": "07",
+      "title": "Covid Response - $50",
+      "desc": "Covid Response - $50",
+      "cost": 50,
+      "category": "cr"
+    },
+    {
+      "id": "08",
+      "title": "Covid Response - $100",
+      "desc": "Covid Response - $100",
+      "cost": 100,
+      "category": "cr"
+    },
+    {
+      "id": "09",
+      "title": "Covid Response - $500",
+      "desc": "Covid Response - $500",
+      "cost": 500,
+      "category": "cr"
+    },
+    {
+      "id": "10",
+      "title": "For 1 month",
+      "desc": "Sponsor Student - 1 month",
+      "cost": 50,
+      "category": "gi"
+    },
+    {
+      "id": "11",
+      "title": "For 2 months",
+      "desc": "Sponsor Student - 2 months",
+      "cost": 100,
+      "category": "gi"
+    },
+    {
+      "id": "12",
+      "title": "For 1 Year",
+      "desc": "Sponsor Student - 1 year",
+      "cost": 600,
+      "category": "gi"
     }
   ]
 }

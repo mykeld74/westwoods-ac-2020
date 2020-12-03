@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Advent Conspiracy - Westwoods Community Church`,
+    title: `Westwoods Community Church`,
     description: `Westwoods invites you to join the Advent Conspiracy, Spend Less, Give More, Love All, Worship Fully!`,
     author: `Mike Daugherty`,
   },
