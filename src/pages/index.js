@@ -36,6 +36,15 @@ const StyledList = styled.ul`
   }
 `
 
+const ActionCenter = styled.div`
+  p {
+    margin: 0;
+  }
+  h4 {
+    margin: 0 0 5px 0;
+  }
+`
+
 const staggerCards = {
   hidden: {
     transition: { staggerChildren: 0.075, staggerDirection: -1 },
@@ -221,9 +230,13 @@ const IndexPage = ({ data }) => {
             <li>Bicycles + Helmets</li>
             <li>Legos and Nerf Toys</li>
           </StyledList>
-          Donate your items at the Donation Dock: 8755 W 14th Ave Lakewood, CO
-          80215 Monday, Tuesday, Thursday, and Friday from 9 a.m. to 3 p.m.
-          Saturdays from 9 a.m. to Noon Wednesdays and Sundays – CLOSED
+          <ActionCenter>
+            <h4>Donate your items at the Donation Dock:</h4>
+            <p>8755 W 14th Ave Lakewood, CO 80215 </p>
+            <p>Monday, Tuesday, Thursday, and Friday from 9 a.m. to 3 p.m.</p>
+            <p>Saturdays from 9 a.m. to Noon </p>
+            <p> Wednesdays and Sundays – CLOSED</p>
+          </ActionCenter>
         </OpBlock>
       </MainContainer>
     </Layout>
