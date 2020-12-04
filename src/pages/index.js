@@ -10,6 +10,10 @@ import Cart from '../components/cart'
 const MainContainer = styled.div`
   width: 100vw;
   padding: 5vh 5vw;
+  h1 {
+    font-size: clamp(24px, 3vw, 42px);
+    line-height: 1.3;
+  }
 `
 const OpBlock = styled.div`
   margin-top: 5vh;
@@ -87,6 +91,9 @@ const IndexPage = ({ data }) => {
       <Cart cartList={myCart} categories={categories} />
       <SEO title="Advent Conspiracy" />
       <MainContainer>
+        <h1>Westwoods invites you to join the Advent Conspiracy:</h1>{' '}
+        <h1>Spend Less, Give More, Love All, Worship Fully! </h1>
+        <h3> Below are several options that can use your support.</h3>
         <OpBlock>
           <h2>Next Gen:</h2>
           <p>
