@@ -46,7 +46,7 @@ const Header = ({ siteTitle }) => {
         }
       }
       acLogo: imageSharp(fluid: { originalName: { eq: "ac_logo.png" } }) {
-        fluid(maxWidth: 300) {
+        fluid(maxWidth: 500) {
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }
