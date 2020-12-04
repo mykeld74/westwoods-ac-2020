@@ -1,12 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faTimes,
-  faShoppingCart,
-  faTrash,
-} from '@fortawesome/free-solid-svg-icons'
+import { faTimes, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { useToggleCart } from '../hooks/toggleCart'
 
 const Sidebar = styled(motion.div)`
@@ -61,11 +57,6 @@ const StyledCloseButtonIcon = styled(FontAwesomeIcon)`
   padding: 0;
   font-size: 20px;
 `
-const StyledDeleteButtonIcon = styled(FontAwesomeIcon)`
-  margin: 0;
-  padding: 0;
-  font-size: 20px;
-`
 const SuggestedTotal = styled.div`
   font-size: 20px;
   margin: 0 0 10px 0;
@@ -80,25 +71,13 @@ const Total = styled.p`
   margin: 0;
   font-weight: 900;
 `
-const RemoveAllButton = styled.button`
-  background: #fff;
-  color: #c13934;
-  border: none;
-  outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 10px;
-  p {
-    margin: 0 0 0 10px;
-  }
-`
+
 const DonationItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   p {
-    margin-bottom: 10px;
+    margin-bottom: 0;
     &.bold {
       font-weight: 900;
     }
@@ -147,7 +126,7 @@ const Cart = ({ setIsVisible, cartList, removeAll }) => {
       ) : (
         <div>
           {cartList.map(item => (
-            <DonationItem key={item.id}>
+            <DonationItem key={item.uniqueID} id={item.uniqueID}>
               <p>{item.desc}</p>
               <p className="bold">$ {item.cost}</p>
             </DonationItem>
@@ -155,10 +134,6 @@ const Cart = ({ setIsVisible, cartList, removeAll }) => {
         </div>
       )}
       <SuggestedTotal>
-        <RemoveAllButton onClick={removeAll}>
-          <StyledDeleteButtonIcon icon={faTrash} />
-          <p>Remove all</p>
-        </RemoveAllButton>
         <p>Your suggested donation is:</p>
         <Total>${newTotal}</Total>
       </SuggestedTotal>
