@@ -60,6 +60,7 @@ const IndexPage = ({ data }) => {
   // const { isToggled, toggle } = useToggleCart(false)
   const opportunities = data.dataJson.giveTo
   const [myCart, setMyCart] = useState([])
+  const [categories, setCategories] = useState([])
 
   const handleAdd = (uniqueID, title, cost, desc, category) => {
     const newCart = myCart.concat({
@@ -69,16 +70,21 @@ const IndexPage = ({ data }) => {
       desc,
       category,
     })
+    const newCategories = categories.concat(category)
     setMyCart(newCart)
+    setCategories(newCategories)
   }
-  const handleRemove = (uniqueID, title, cost, desc, category) => {
+  const handleRemove = (uniqueID, category) => {
     const newCart = myCart.filter(item => item.uniqueID !== uniqueID)
+    const updateCat = categories.filter(cat => cat.category !== category)
+
     setMyCart(newCart)
+    setCategories(updateCat)
   }
 
   return (
     <Layout>
-      <Cart cartList={myCart} />
+      <Cart cartList={myCart} categories={categories} />
       <SEO title="Advent Conspiracy" />
       <MainContainer>
         <OpBlock>

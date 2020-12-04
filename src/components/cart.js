@@ -16,6 +16,11 @@ const Sidebar = styled(motion.div)`
   top: 0;
   padding: 50px 20px 0;
   color: #fff;
+  p {
+    &.instructions {
+      width: calc(100% - 20px);
+    }
+  }
 `
 
 const CloseButton = styled.button`
@@ -71,7 +76,13 @@ const Total = styled.p`
   margin: 0;
   font-weight: 900;
 `
-
+const DonationBlock = styled.div`
+  width: 100%;
+  h4 {
+    margin: 15px 0 0 0;
+    text-decoration: underline;
+  }
+`
 const DonationItem = styled.div`
   display: flex;
   align-items: center;
@@ -81,6 +92,25 @@ const DonationItem = styled.div`
     &.bold {
       font-weight: 900;
     }
+  }
+`
+
+const DonateLink = styled.a`
+  width: calc(100% - 20px);
+  height: 50px;
+  background: #fff;
+  color: #c13934;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 2px solid #c13934;
+  transition: all 0.25s ease-in-out;
+  &:hover {
+    background: #c13934;
+    color: #fff;
+    border: 2px solid #fff;
   }
 `
 const sidebarAnimation = {
@@ -98,12 +128,13 @@ const sidebarAnimation = {
   },
 }
 
-const Cart = ({ setIsVisible, cartList, removeAll }) => {
+const Cart = ({ setIsVisible, cartList, categories }) => {
   const { isToggled, toggle } = useToggleCart(false)
   const newTotal = cartList.reduce(
     (totalDonation, opportunity) => totalDonation + parseInt(opportunity.cost),
     0
   )
+
   const items = cartList.length
 
   return (
@@ -124,18 +155,81 @@ const Cart = ({ setIsVisible, cartList, removeAll }) => {
           <h3>Your cart is empty.</h3>
         </div>
       ) : (
-        <div>
-          {cartList.map(item => (
-            <DonationItem key={item.uniqueID} id={item.uniqueID}>
-              <p>{item.desc}</p>
-              <p className="bold">$ {item.cost}</p>
-            </DonationItem>
-          ))}
-        </div>
+        <>
+          {categories.includes('ng') && (
+            <DonationBlock>
+              <h4>Next Gen</h4>
+              {cartList.map(
+                item =>
+                  item.category === 'ng' && (
+                    <DonationItem key={item.uniqueID} id={item.uniqueID}>
+                      <p>{item.desc}</p>
+                      <p className="bold">$ {item.cost}</p>
+                    </DonationItem>
+                  )
+              )}
+            </DonationBlock>
+          )}
+          {categories.includes('jk') && (
+            <DonationBlock>
+              <h4>Joy's Kitchen</h4>
+              {cartList.map(
+                item =>
+                  item.category === 'jk' && (
+                    <DonationItem key={item.uniqueID} id={item.uniqueID}>
+                      <p>{item.desc}</p>
+                      <p className="bold">$ {item.cost}</p>
+                    </DonationItem>
+                  )
+              )}
+            </DonationBlock>
+          )}
+
+          {categories.includes('cr') && (
+            <DonationBlock>
+              <h4>Covid Response</h4>
+              {cartList.map(
+                item =>
+                  item.category === 'cr' && (
+                    <DonationItem key={item.uniqueID} id={item.uniqueID}>
+                      <p>{item.desc}</p>
+                      <p className="bold">$ {item.cost}</p>
+                    </DonationItem>
+                  )
+              )}
+            </DonationBlock>
+          )}
+          {categories.includes('gi') && (
+            <DonationBlock>
+              <h4>Global Ministry</h4>
+              {cartList.map(
+                item =>
+                  item.category === 'gi' && (
+                    <DonationItem key={item.uniqueID} id={item.uniqueID}>
+                      <p>{item.desc}</p>
+                      <p className="bold">$ {item.cost}</p>
+                    </DonationItem>
+                  )
+              )}
+            </DonationBlock>
+          )}
+        </>
       )}
       <SuggestedTotal>
-        <p>Your suggested donation is:</p>
+        <p>Click the button below and enter:</p>
         <Total>${newTotal}</Total>
+        <p>and select the corresponding fund.</p>
+        <DonateLink
+          href="https://westwoods.churchcenter.com/giving/to/ac-next-gen"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Donate Now
+        </DonateLink>
+        <p className="instructions">
+          *if you are donating to multiple funds you will need complete each
+          transaction separately.
+        </p>
       </SuggestedTotal>
     </Sidebar>
   )
