@@ -30,6 +30,12 @@ const CardContainer = styled(motion.div)`
   gap: 2vw;
 `
 
+const StyledList = styled.ul`
+  li {
+    margin: 0 0 5px 10px;
+  }
+`
+
 const staggerCards = {
   hidden: {
     transition: { staggerChildren: 0.075, staggerDirection: -1 },
@@ -46,22 +52,24 @@ const IndexPage = ({ data }) => {
   const opportunities = data.dataJson.giveTo
   const [myCart, setMyCart] = useState([])
 
-  const handleAdd = (id, title, cost, desc) => {
+  const handleAdd = (uniqueID, title, cost, desc, category) => {
     const newCart = myCart.concat({
-      id: id,
-      title: title,
-      cost: cost,
-      desc: desc,
+      uniqueID,
+      title,
+      cost,
+      desc,
+      category,
     })
     setMyCart(newCart)
   }
-  const handleRemoveAll = () => {
-    const newCart = []
+  const handleRemove = (uniqueID, title, cost, desc, category) => {
+    const newCart = myCart.filter(item => item.uniqueID !== uniqueID)
     setMyCart(newCart)
   }
+
   return (
     <Layout>
-      <Cart cartList={myCart} removeAll={handleRemoveAll} />
+      <Cart cartList={myCart} />
       <SEO title="Advent Conspiracy" />
       <MainContainer>
         <OpBlock>
@@ -83,12 +91,14 @@ const IndexPage = ({ data }) => {
               opportunity =>
                 opportunity.category === 'ng' && (
                   <Card
-                    key={opportunity.id}
+                    key={opportunity.uniqueID}
+                    id={opportunity.uniqueID}
                     title={opportunity.title}
                     cost={opportunity.cost}
                     category={opportunity.category}
                     desc={opportunity.desc}
                     addItem={handleAdd}
+                    removeItem={handleRemove}
                   />
                 )
             )}
@@ -110,12 +120,14 @@ const IndexPage = ({ data }) => {
               opportunity =>
                 opportunity.category === 'jk' && (
                   <Card
-                    key={opportunity.id}
+                    key={opportunity.uniqueID}
+                    id={opportunity.uniqueID}
                     title={opportunity.title}
                     cost={opportunity.cost}
                     category={opportunity.category}
                     desc={opportunity.desc}
                     addItem={handleAdd}
+                    removeItem={handleRemove}
                   />
                 )
             )}
@@ -140,12 +152,14 @@ const IndexPage = ({ data }) => {
               opportunity =>
                 opportunity.category === 'cr' && (
                   <Card
-                    key={opportunity.id}
+                    key={opportunity.uniqueID}
+                    id={opportunity.uniqueID}
                     title={opportunity.title}
                     cost={opportunity.cost}
                     category={opportunity.category}
                     desc={opportunity.desc}
                     addItem={handleAdd}
+                    removeItem={handleRemove}
                   />
                 )
             )}
@@ -175,16 +189,41 @@ const IndexPage = ({ data }) => {
               opportunity =>
                 opportunity.category === 'gi' && (
                   <Card
-                    key={opportunity.id}
+                    key={opportunity.uniqueID}
+                    id={opportunity.uniqueID}
                     title={opportunity.title}
                     cost={opportunity.cost}
                     category={opportunity.category}
                     desc={opportunity.desc}
                     addItem={handleAdd}
+                    removeItem={handleRemove}
                   />
                 )
             )}
           </CardContainer>
+        </OpBlock>
+        <OpBlock>
+          <h2>
+            The Action Center is an incredible advocate for the vulnerable in
+            our city.
+          </h2>
+          <p>
+            If you want to partner with their efforts and provide a Christmas
+            present – here are the details: HOLIDAY GIFT SHOP TOYS NEEDED:
+          </p>
+          <StyledList>
+            <li>Remote Control Cars and Trucks</li>
+            <li>Skateboards</li>
+            <li>Scooters</li>
+            <li>Science Kits</li>
+            <li>Arts & Crafts Kits</li>
+            <li>Nail & Make-Up Kits</li>
+            <li>Bicycles + Helmets</li>
+            <li>Legos and Nerf Toys</li>
+          </StyledList>
+          Donate your items at the Donation Dock: 8755 W 14th Ave Lakewood, CO
+          80215 Monday, Tuesday, Thursday, and Friday from 9 a.m. to 3 p.m.
+          Saturdays from 9 a.m. to Noon Wednesdays and Sundays – CLOSED
         </OpBlock>
       </MainContainer>
     </Layout>
@@ -196,7 +235,7 @@ export const homeQuery = graphql`
     dataJson {
       giveTo {
         cost
-        id
+        uniqueID
         title
         category
         desc

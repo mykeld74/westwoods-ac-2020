@@ -58,15 +58,18 @@ const CartButton = styled.button`
   color: #fff;
   border: none;
   outline: none;
-  :disabled {
-    background: #bbb;
+  transition: background-color 0.25s ease-in-out;
+  cursor: pointer;
+  &.removeButton {
+    background-color: #af9b4e;
   }
 `
 
-const Card = ({ id, title, cost, category, desc, addItem }) => {
+const Card = ({ id, title, cost, category, desc, addItem, removeItem }) => {
   const [isClicked, setIsClicked] = useState(false)
+
   return (
-    <StyledCard key={id} variants={card} initial="hidden">
+    <StyledCard key={id} variants={card} initial="hidden" id={id}>
       <div className="title">
         <h3>{title}</h3>
       </div>
@@ -74,14 +77,21 @@ const Card = ({ id, title, cost, category, desc, addItem }) => {
       <div className="cost">
         <p>${cost}</p>
         <CartButton
-          onClick={() => {
-            addItem(id, title, cost, desc)
-            setIsClicked(true)
-          }}
-          disabled={isClicked}
-          className="addButton"
+          onClick={
+            !isClicked
+              ? () => {
+                  addItem(id, title, cost, desc, category)
+                  setIsClicked(true)
+                }
+              : () => {
+                  removeItem(id, title, cost, desc, category)
+                  setIsClicked(false)
+                }
+          }
+          // disabled={isClicked}
+          className={isClicked ? `removeButton` : `addButton`}
         >
-          {isClicked ? `Added` : `Add to Cart`}
+          {isClicked ? `Remove from Cart` : `Add to Cart`}
         </CartButton>
       </div>
     </StyledCard>
